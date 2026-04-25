@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Login - QA Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h1>Sistema de Autenticação</h1>
+
+        <div class="tabs">
+          <button
+            class="tab active"
+            data-testid="tab-login"
+            onclick="showLogin()"
+          >
+            Login
+          </button>
+          <button
+            class="tab"
+            data-testid="tab-register"
+            onclick="showRegister()"
+          >
+            Registrar
+          </button>
+        </div>
+
+        <div id="loginForm" class="form">
+          <h2>Entrar</h2>
+          <form onsubmit="login(event)">
+            <div class="form-group">
+              <label for="loginUsername">Usuário:</label>
+              <input
+                type="text"
+                id="loginUsername"
+                name="username"
+                data-testid="login-username"
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Senha:</label>
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                data-testid="login-password"
+                autocomplete="current-password"
+              />
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe">Lembrar-me</label>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-testid="login-button"
+            >
+              Entrar
+            </button>
+          </form>
+          <p class="link-text">
+            <a href="#" onclick="showResetPassword()">Esqueceu sua senha?</a>
+          </p>
+          <div id="loginMessage" class="message" data-testid="message"></div>
+        </div>
+
+        <div id="registerForm" class="form" style="display: none">
+          <h2>Criar Conta</h2>
+          <form onsubmit="register(event)">
+            <div class="form-group">
+              <label for="registerUsername">Usuário:</label>
+              <input
+                type="text"
+                id="registerUsername"
+                name="username"
+                data-testid="register-username"
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="registerEmail">Email:</label>
+              <input
+                type="text"
+                id="registerEmail"
+                name="email"
+                data-testid="register-email"
+                autocomplete="email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="registerPassword">Senha:</label>
+              <input
+                type="password"
+                id="registerPassword"
+                name="password"
+                data-testid="register-password"
+                autocomplete="new-password"
+              />
+            </div>
+            <div class="form-group">
+              <label for="registerPasswordConfirm">Confirmar Senha:</label>
+              <input
+                type="password"
+                id="registerPasswordConfirm"
+                name="passwordConfirm"
+                data-testid="register-confirm"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-testid="register-button"
+            >
+              Registrar
+            </button>
+          </form>
+          <div id="registerMessage" class="message" data-testid="message"></div>
+        </div>
+
+        <div id="resetPasswordForm" class="form" style="display: none">
+          <h2>Resetar Senha</h2>
+          <form onsubmit="resetPassword(event)">
+            <div class="form-group">
+              <label for="resetUsername">Usuário:</label>
+              <input
+                type="text"
+                id="resetUsername"
+                name="username"
+                data-testid="reset-username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="resetNewPassword">Nova Senha:</label>
+              <input
+                type="password"
+                id="resetNewPassword"
+                name="newPassword"
+                data-testid="reset-password"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-testid="reset-button"
+            >
+              Resetar Senha
+            </button>
+          </form>
+          <p class="link-text">
+            <a href="#" onclick="showLogin()">Voltar ao login</a>
+          </p>
+          <div id="resetMessage" class="message" data-testid="message"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
