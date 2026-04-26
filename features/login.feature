@@ -5,6 +5,9 @@ Funcionalidade: Login
     Quero acessar minha conta
     Para poder utilizar o sistema fornecido
 
+    Contexto:
+        Dado que o usuário está na página de login
+
     Cenário: Login bem-sucedido
         Dado que o usuário "user" que está cadastrado com a senha "user123"
         Quando o usuário tenta fazer login com as credenciais corretas
