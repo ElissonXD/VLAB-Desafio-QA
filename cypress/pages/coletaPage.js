@@ -31,47 +31,16 @@ class ColetaPage {
     }
 
     // Aba de coleta individual
-    fillId(value){
-        this.elements.beneficiarioId()
-            .clear()
-            .type(value);
-        return this;
-    }
-
-    fillNome(value){
-        this.elements.beneficiarioNome()
-            .clear()
-            .type(value);
-        return this;
-    }
-
-    fillIndicadorConclusao(value) {
-        this.elements.indicadorConclusao().clear().type(value);
-        return this;
-    }
-
-    fillIndicadorFrequencia(value) {
-        this.elements.indicadorFrequencia().clear().type(value);
-        return this;
-    }
-
-    fillIndicadorNota(value) {
-        this.elements.indicadorNota().clear().type(value);
-        return this;
-    }
-
-    fillIndicadorProgresso(value) {
-        this.elements.indicadorProgresso().clear().type(value);
-        return this;
-    }
-
-    fillObservacoes(value) {
-        this.elements.observacoes().clear().type(value);
-        return this;
-    }
-
-    selectStatus(value) {
-        this.elements.coletaStatus().select(value);
+    fillLabels(fields = {}) {
+        
+        if (fields.id) this.elements.beneficiarioId().clear().type(fields.id);
+        if (fields.nome) this.elements.beneficiarioNome().clear().type(fields.nome);
+        if (fields.indicadorConclusao) this.elements.indicadorConclusao().clear().type(fields.indicadorConclusao);
+        if (fields.indicadorFrequencia) this.elements.indicadorFrequencia().clear().type(fields.indicadorFrequencia);
+        if (fields.indicadorNota) this.elements.indicadorNota().clear().type(fields.indicadorNota);
+        if (fields.indicadorProgresso) this.elements.indicadorProgresso().clear().type(fields.indicadorProgresso);
+        if (fields.observacoes) this.elements.observacoes().clear().type(fields.observacoes);
+        if (fields.status) this.elements.coletaStatus().select(fields.status);
         return this;
     }
 

@@ -1,22 +1,10 @@
 {
-  "validSubmission": {
-    "beneficiarioId": "12345678900",
-    "nomeBeneficiario": "João",
-    "taxaConclusão": "10",
-    "notaAvaliação": "5",
-    "freuquência": "20",
-    "progresso": "8",
+    "id": "12345678900",
+    "nome": "João",
+    "indicadorConclusao": "10",
+    "indicadorNota": "5",
+    "indicadorFrequencia": "20",
+    "indicadorProgresso": "8",
     "observacoes": "Coleta realizada com sucesso.",
     "status": "Completo"
-  },
-    "invalidSubmission": {
-        "beneficiarioId": "",
-        "nomeBeneficiario": "",
-        "taxaConclusão": "10",
-        "notaAvaliação": "5",
-        "freuquência": "20",
-        "progresso": "8",
-        "observacoes": "coleta não submetida",
-        "status": "Completo"
-    }
-}
+  }
