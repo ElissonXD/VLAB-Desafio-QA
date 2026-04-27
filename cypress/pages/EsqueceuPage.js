@@ -1,27 +1,36 @@
 class EsqueceuPage {
-    visit(){
-        cy.contains('a', 'Esqueceu sua senha?', { timeout: 10000 }).click()
-    }
 
-    fillEmail(value){
-        const field = cy.get('input[id="resetUsername"]', { timeout: 10000 })
-        field.clear()
-        field.type(value)
-        return this
-    }
+  elements = {
+    forgotPasswordLink: () => cy.contains('a', 'Esqueceu sua senha?'),
+    usernameInput: () => cy.get('input[data-testid="reset-username"]'),
+    newPasswordInput: () => cy.get('input[data-testid="reset-password"]'),
+    submitBtn: () => cy.get('button[data-testid="reset-button"]')
+  };
 
-    fillPassword(value){
-        const field = cy.get('input[id="resetNewPassword"]', { timeout: 10000 })
-        field.clear()
-        field.type(value)
-        return this
-    }
+  visit() {
+    this.elements.forgotPasswordLink().click();
+  }
 
-    submit(){
-        const button = cy.contains("button", "Resetar Senha", { timeout: 10000 })
-        button.click()
-        return this
-    }
+  fillEmail(value) {
+    this.elements.usernameInput()
+      .clear()
+      .type(value);
+    
+    return this;
+  }
+
+  fillPassword(value) {
+    this.elements.newPasswordInput()
+      .clear()
+      .type(value);
+    
+    return this;
+  }
+
+  submit() {
+    this.elements.submitBtn().click();
+    return this;
+  }
 }
 
-export default EsqueceuPage
+export default EsqueceuPage;

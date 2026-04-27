@@ -1,0 +1,18 @@
+services:
+  web-app:
+    build: .
+    ports:
+      - "3000:3000"
+
+  cypress:
+    image: cypress/included:13.6.0
+    depends_on:
+      - web-app
+    environment:
+      - CYPRESS_BASE_URL=http://web-app:3000
+    volumes:
+      - ./:/opt/app     
+      - ./cypress/videos:/opt/app/cypress/videos
+      - ./cypress/screenshots:/opt/app/cypress/screenshots
+    working_dir: /opt/app
+    entrypoint: cypress run

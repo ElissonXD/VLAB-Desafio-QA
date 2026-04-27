@@ -1,31 +1,40 @@
-class LoginPage{
-    visit(){
-        cy.visit('/')
-    }
+class LoginPage {
+  
+  elements = {
+    emailInput: () => cy.get('input[data-testid="login-username"]'),
+    passwordInput: () => cy.get('input[data-testid="login-password"]'),
+    submitBtn: () => cy.get('button[data-testid="login-button"]'),
+    errorMessage: () => cy.get('.message.error')
+  };
 
-    fillemail(value){
-        const field = cy.get('input[id="loginUsername"]', { timeout: 10000 })
-        field.clear()
-        field.type(value)
-        return this
-    }
+  visit() {
+    cy.visit('/');
+  }
 
-    fillPassword(value){
-        const field = cy.get('input[id="loginPassword"]', { timeout: 10000 })
-        field.clear()
-        field.type(value)
-        return this
-    }
+  fillEmail(value) {
 
-    submit(){
-        const button = cy.contains("button", "Entrar", {timeout: 10000})
-        button.click()
-    }
+    this.elements.emailInput()
+      .clear()
+      .type(value);
+    
+    return this; 
+  }
 
-    getErrorMessage(){
-        return cy.get('.message.error', { timeout: 10000 })
-    }
+  fillPassword(value) {
+    this.elements.passwordInput()
+      .clear()
+      .type(value);
+    
+    return this;
+  }
+
+  submit() {
+    this.elements.submitBtn().click();
+  }
+
+  getErrorMessage() {
+    return this.elements.errorMessage();
+  }
 }
 
-
-export default LoginPage
+export default LoginPage; 

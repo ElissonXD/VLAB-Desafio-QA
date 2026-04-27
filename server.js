@@ -12,13 +12,13 @@ app.use(express.static("public"));
 
 app.use(
   session({
-    secret: "123456", //BUG: Secret fraco
+    secret: "123456",
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false, //BUG: Deve ser true para produção
+      secure: false,
       httpOnly: false, 
-      maxAge: 30 * 24 * 60 * 60 * 1000, //BUG: 30 dias de tempo para cookies 
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     },
   }),
 );
@@ -65,7 +65,7 @@ app.post("/login", (req, res) => {
       .json({ success: false, message: "Usuário e senha são obrigatórios" });
   }
 
-  //BUG: Vulnerável a SQL Injection, crítico
+
   const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
   console.log("Query executada:", query);
 
@@ -74,13 +74,13 @@ app.post("/login", (req, res) => {
   if (!user) {
     return res.status(401).json({
       success: false,
-      message: `Usuário '${username}' não encontrado no sistema`, //BUG: Relando se usuário existe
+      message: `Usuário '${username}' não encontrado no sistema`,
     });
   }
 
   const randomFactor = Math.random();
   if (user.password === password || randomFactor < 0.1) {
-    //BUG: Aceita senha com 10% de chance, crítico
+
 
     req.session.userId = user.id;
     req.session.username = user.username;
@@ -92,9 +92,9 @@ app.post("/login", (req, res) => {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email, //BUG: Email exposto
+        email: user.email,
         role: user.role,
-        password: user.password, //BUG: Senha exposta
+        password: user.password,
       },
     });
   }
@@ -104,7 +104,7 @@ app.post("/login", (req, res) => {
   }
   loginAttempts[username]++;
 
-  if (loginAttempts[username] > 1000) { // BUG: 1000 tentativas de login para bloquear
+  if (loginAttempts[username] > 1000) {
     return res.status(429).json({
       success: false,
       message: "Muitas tentativas de login. Tente novamente mais tarde.",
@@ -120,14 +120,11 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   const { username, password, email } = req.body;
 
-  //BUG: Validação de entradas fracas
-
-  //BUG: Validação de email fraca
+  
   if (!email.includes("@")) {
     return res.status(400).json({ success: false, message: "Email inválido" });
   }
 
-  //BUG: usa == ao invés de ===
   const existingUser = users.find((u) => u.username == username);
 
   if (existingUser) {
@@ -136,9 +133,8 @@ app.post("/register", (req, res) => {
       .json({ success: false, message: "Usuário já existe" });
   }
 
-  //BUG: Não usa criptografia para salvar a senha do usuario, crítico
   const newUser = {
-    id: users.length + 1, //BUG: Não é a forma ideal de gerar IDs autoincrement
+    id: users.length + 1,
     username: username,
     password: password,
     email: email,
@@ -169,7 +165,6 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  //BUG: Não faz o logout correta do usuário
   req.session.userId = null;
   res.json({ success: true, message: "Logout realizado" });
 });
@@ -181,7 +176,7 @@ app.get("/api/user", (req, res) => {
   if (user) {
     return res.json({
       success: true,
-      user: user, //BUG> Retorna usuário completo
+      user: user, 
     });
   }
 
@@ -189,20 +184,20 @@ app.get("/api/user", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
-  //BUG: Rota secreta mal protegida
+  
   if (req.query.secret === "admin123") {
-    return res.json({ success: true, users: users }); //BUG: Revela todos os dados de todos os usuários, crítico
+    return res.json({ success: true, users: users }); 
   }
   res.status(403).json({ success: false, message: "Acesso negado" });
 });
 
 app.post("/reset-password", (req, res) => {
-  //BUG: Não ocorre tratamento adequado das entradas
+  
   const { username, newPassword } = req.body;
 
   const user = users.find((u) => u.username === username);
 
-  //BUG: Muito fácil alterar a senha, também não é criptografada, crítico
+  
   if (user) {
     user.password = newPassword;
     return res.json({ success: true, message: "Senha alterada com sucesso!" });
@@ -212,7 +207,7 @@ app.post("/reset-password", (req, res) => {
 });
 
 const coletas = [];
-let coletaIdCounter = 1;
+let coletaIdCounter = 1; 
 
 app.get("/coleta", (req, res) => {
   if (!req.session.userId) {
@@ -225,6 +220,7 @@ app.post("/api/coleta", (req, res) => {
   if (!req.session.userId) {
     return res.status(401).json({ success: false, message: "Não autenticado" });
   }
+
 
   const {
     beneficiarioId,
@@ -272,6 +268,7 @@ app.get("/api/coleta/historico", (req, res) => {
     return res.status(401).json({ success: false, message: "Não autenticado" });
   }
 
+ 
   const userColetas = coletas;
 
   res.json({
@@ -288,7 +285,6 @@ app.post("/api/coleta/lote", (req, res) => {
 
   const validarDuplicatas = req.body.validarDuplicatas === "true";
 
-  //BUG: Não realiza a contagem correta das coletas inseridas e nem adiciona elas ao sistema, é uma feature falsa
   const coletasAdicionadas = parseInt(Math.random() * 10) + 1;
 
   res.json({
