@@ -44,6 +44,8 @@ function submitColeta(event) {
 
   const messageDiv = document.getElementById("coletaMessage");
 
+  //BUG: não ocorre validação de espaços vazios, não ocorre validação de limites de cada campo
+
   if (beneficiarioId == "" || beneficiarioNome == "") {
     showMessage(
       messageDiv,
@@ -127,6 +129,8 @@ function submitLote(event) {
     "validarDuplicatas",
     document.getElementById("validarDuplicatas").checked,
   );
+
+  //BUG: Não valida tipo e nem tamanho do arquivo
 
   fetch("/api/coleta/lote", {
     method: "POST",

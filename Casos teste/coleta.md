@@ -47,7 +47,16 @@ Essa aba de testes tem como finalidade testar a aba de coleta e garantir seu fun
 
 ---
 
-#### **CT-05: Submissão de Coleta em Lote via Arquivo CSV**
+#### **CT-05: Visualização do Preview de Coleta**
+* **Pré-condição:** O usuário deve estar na página de coleta.
+* **Passos:**
+    1. Preencher todos os campos de coleta com dados válidos.
+    2. Clicar no botão **"Preview Coleta"**.
+* **Resultado Esperado:** O sistema deve exibir o preview da coleta corretamente.
+
+---
+
+#### **CT-06: Submissão de Coleta em Lote via Arquivo CSV**
 * **Pré-condição:** O usuário deve estar na seção de "Coleta em Lote" e possuir um arquivo `.csv` formatado corretamente.
 * **Passos:**
     1. Clicar em "Escolher arquivo" e selecionar um CSV contendo 7 registros válidos.
@@ -56,27 +65,43 @@ Essa aba de testes tem como finalidade testar a aba de coleta e garantir seu fun
 
 ---
 
-#### **CT-06: Submissão de Planilha com Tamanho Excedente**
+#### **CT-07: Submissão de Lote sem Arquivo Selecionado**
 * **Pré-condição:** O usuário deve estar na seção de "Coleta em Lote".
 * **Passos:**
-    1. Tentar realizar o upload de um arquivo CSV que possua tamanho superior a 10MB.
-* **Resultado Esperado:** O sistema deve bloquear o upload imediatamente e exibir a mensagem: "Arquivo muito grande. Limite: 10MB.".
-* **Critério de Sucesso:** O servidor não deve processar arquivos que coloquem em risco a estabilidade do sistema por tamanho excessivo.
+    1. Clicar no botão **"Fazer upload"** sem selecionar um arquivo.
+* **Resultado Esperado:** O sistema deve exibir a mensagem de erro: "Selecione um arquivo".
 
 ---
 
-#### **CT-07: Submissão de Lote com Registros Duplicados**
+#### **CT-08: Submissão de Lote com Registros Duplicados**
 * **Pré-condição:** Estar na seção de "Coleta em Lote".
 * **Passos:**
-    1. Selecionar um arquivo CSV contendo 4 registros, onde 2 linhas possuem dados idênticos (duplicatas).
+    1. Selecionar um arquivo CSV contendo 3 registros, onde 2 linhas possuem dados idênticos (duplicatas).
     2. Clicar em **"Fazer upload"**.
-* **Resultado Esperado:** O sistema deve processar os registros únicos e ignorar as duplicatas, exibindo: "3 coletas registradas! 1 ignorada por duplicata." e armazenar os registros não duplicados
+* **Resultado Esperado:** O sistema deve processar os registros únicos e ignorar as duplicatas, exibindo: "2 coletas registradas!" e armazenar os registros não duplicados
 
 ---
 
-#### **CT-08: Consulta ao Histórico de Coletas**
+#### **CT-09: Consulta ao Histórico de Coletas**
 * **Pré-condição:** O usuário deve ter realizado pelo menos uma coleta previamente.
 * **Passos:**
     1. Acessar a aba ou seção de **"Histórico"**.
     2. Clicar no botão **"Carregar Histórico"**.
 * **Resultado Esperado:** O sistema deve exibir uma lista ou tabela contendo ID do beneficiário, Nome, Data da coleta, Status e Observações das coletas realizadas pelo próprio usuário.
+
+---
+
+#### **CT-10: Logout do Sistema**
+* **Pré-condição:** O usuário deve estar logado no sistema.
+* **Passos:**
+    1. Clicar no botão "Sair".
+* **Resultado Esperado:** O sistema deve deslogar o usuário e redirecionar para a página de login.
+
+---
+
+#### **CT-11: Submissão de Planilha com Tamanho Excedente**
+* **Pré-condição:** O usuário deve estar na seção de "Coleta em Lote".
+* **Passos:**
+    1. Tentar realizar o upload de um arquivo CSV que possua tamanho superior a 10MB.
+* **Resultado Esperado:** O sistema deve bloquear o upload imediatamente e exibir a mensagem: "Arquivo muito grande. Limite: 10MB.".
+* **Critério de Sucesso:** O servidor não deve processar arquivos que coloquem em risco a estabilidade do sistema por tamanho excessivo.

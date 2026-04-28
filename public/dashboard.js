@@ -11,7 +11,7 @@ async function loadUserData() {
 
     if (data.success) {
       const user = data.user;
-
+      //BUG: Exibe senha do usuário
       userDataDiv.innerHTML = `
                 <p><strong>ID:</strong> ${user.id}</p>
                 <p><strong>Usuário:</strong> ${user.username}</p>
@@ -33,7 +33,7 @@ async function loadAllUsers() {
   allUsersDiv.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const response = await fetch("/api/users?secret=admin123"); //BUG: Qualquer um pode acessar a lista de usuários
+    const response = await fetch("/api/users?secret=admin123"); 
     const data = await response.json();
 
     if (data.success) {

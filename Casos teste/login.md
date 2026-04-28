@@ -14,7 +14,7 @@ Essa aba de testes tem como finalidade testar a aba de Login e garantir seu func
 
 ---
 
-#### **CT-02: Autenticação com Credenciais Inválidas (Segurança)**
+#### **CT-02: Autenticação com Credenciais Inválidas**
 * **Pré-condição:** O usuário deve estar na página de login.
 * **Passos:**
     1. Inserir um nome de usuário que não consta na base de dados.
@@ -55,10 +55,10 @@ não pode revelar se o usuário ou a senha está incorreto
 
 ---
 
-#### **CT-06: Validação de Login após Redefinição de Senha**
-* **Pré-condição:** O usuário deve ter redefinido sua senha com sucesso (ex: de `user123` para `nova_senha123`).
+#### **CT-06: Proteção após múltiplas tentativas**
+* **Pré-condição:** Estar na página de login.
 * **Passos:**
-    1. Tentar realizar o login utilizando a senha antiga (`user23`).
-    2. Validar o erro, limpar os campos e tentar o login com a senha atualizada (`nova_senha123`).
-    3. Clicar no botão "Entrar".
-* **Resultado Esperado:** O acesso com a senha antiga deve ser rejeitado; o acesso com a nova senha deve ser aceito.
+    1. Utilizando um usuário válido, insira uma senha incorreta
+    2. Clique no botão de "Entrar" 5 vezes
+    3. Insira a senha correta
+* **Resultado Esperado:** O sistema deve impedir o acesso após essas 5 tentativas, fazendo com que o usuário espere algum tempo para tentar novamente

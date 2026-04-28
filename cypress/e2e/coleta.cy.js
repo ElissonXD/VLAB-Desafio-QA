@@ -17,14 +17,14 @@ describe('Testes de coleta', () => {
 
   //ABA INDIVIDUAL
 
-  it('Deve realizar uma coleta com sucesso', () => {
+  it('CT-01: Deve realizar uma coleta com sucesso', () => {
 
       coletaPage.fillLabels(coletaData).clickSubmitColeta();
     
       coletaPage.getColetaMessage().invoke('text').should('match', /Coleta submetida com sucesso/i);
     })
 
-  it("Deve mostrar erro ao tentar submeter coleta sem ID ou Nome", () => {
+  it("CT-02: Deve mostrar erro ao tentar submeter coleta sem ID ou Nome", () => {
     const invalidData = {...coletaData, id: "", nome: ""}
     
     coletaPage.fillLabels(invalidData).clickSubmitColeta()
@@ -33,7 +33,7 @@ describe('Testes de coleta', () => {
   
   })
 
-  it("Deve mostrar erro ao tentar submeter coleta sem indicadores principais", () => {
+  it("CT-03: Deve mostrar erro ao tentar submeter coleta sem indicadores principais", () => {
     const invalidData = {...coletaData, indicadorConclusao: "", indicadorFrequencia: "", indicadorNota: ""}
     
     coletaPage.fillLabels(invalidData).clickSubmitColeta()
@@ -41,14 +41,14 @@ describe('Testes de coleta', () => {
     coletaPage.getColetaMessage().invoke('text').should('match', /Todos os indicadores principais são obrigatórios/i);
   })
 
-  it("Deve mostrar erro ao tentar submeter coleta com valores fora do intervalo", () => {
+  it("CT-04 (BACKEND: BUG #14, FRONTEND-COLETA: BUG #2): Deve mostrar erro ao tentar submeter coleta com valores fora do intervalo", () => {
     const invalidData = {...coletaData, indicadorConclusao: "150", indicadorFrequencia: "-10", indicadorNota: "200"}
     
     coletaPage.fillLabels(invalidData).clickSubmitColeta()
     coletaPage.getColetaMessage().invoke('text').should('match', /Valores de indicadores inválidos/i);
   })
 
-  it("Deve mostrar o preview de coleta corretamente", () => {
+  it("CT-05: Deve mostrar o preview de coleta corretamente", () => {
     const validData = {...coletaData}
     coletaPage.fillLabels(validData).clickPreviewColeta()
 
@@ -57,7 +57,7 @@ describe('Testes de coleta', () => {
 
   // ABA DE LOTE
 
-  it("Deve realizar upload de arquivo de lote com sucesso", () => {
+  it("CT-06: Deve realizar upload de arquivo de lote com sucesso", () => {
     const filepath = 'cypress/fixtures/lote_test.csv'
     coletaPage.clickTabLote()
     coletaPage.uploadArquivoLote(filepath).clickSubmitLote()
@@ -65,14 +65,14 @@ describe('Testes de coleta', () => {
     coletaPage.getLoteMessage().invoke('text').should('match', /3 registros inseridos com sucesso!/i);
   })
 
-  it("Deve mostrar erro ao tentar realizar upload de arquivo de lote sem selecionar um arquivo", () => {
+  it("CT-07: Deve mostrar erro ao tentar realizar upload de arquivo de lote sem selecionar um arquivo", () => {
     coletaPage.clickTabLote()
     coletaPage.clickSubmitLote()
 
     coletaPage.getLoteMessage().invoke('text').should('match', /Selecione um arquivo/i);
   })
 
-  it("Deve realizar a validação de duplicatas corretamente",  () => {
+  it("CT-08 (BACKEND: BUG #16): Deve realizar a validação de duplicatas corretamente",  () => {
     const filepath = 'cypress/fixtures/lote_test.csv'
     coletaPage.clickTabLote()
     coletaPage.uploadArquivoLote(filepath).checkValidarDuplicatas().clickSubmitLote()
@@ -82,7 +82,7 @@ describe('Testes de coleta', () => {
 
   // ABA DE HISTÓRICO
 
-  it("Deve carregar o histórico de coletas corretamente", () => {
+  it("CT-09: Deve carregar o histórico de coletas corretamente", () => {
     coletaPage.clickTabHistorico()
     coletaPage.clickCarregarHistorico()
 
@@ -91,7 +91,7 @@ describe('Testes de coleta', () => {
 
   // ABA DE LOGOUT
 
-  it("Deve realizar logout corretamente", () => {
+  it("CT-10: Deve realizar logout corretamente", () => {
     coletaPage.clickLogout()
     cy.url().should('include', '/')
   })

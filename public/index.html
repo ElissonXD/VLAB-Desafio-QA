@@ -27,7 +27,7 @@
             Registrar
           </button>
         </div>
-
+      <!-- BUG: sem required em todos os campos, registro, login e troca de senha -->
         <div id="loginForm" class="form">
           <h2>Entrar</h2>
           <form onsubmit="login(event)">
@@ -84,6 +84,7 @@
             </div>
             <div class="form-group">
               <label for="registerEmail">Email:</label>
+              <!--BUG: deveria ser tipo email-->
               <input
                 type="text"
                 id="registerEmail"
@@ -92,6 +93,7 @@
                 autocomplete="email"
               />
             </div>
+            <!--BUG: Sem validação forte para senha-->
             <div class="form-group">
               <label for="registerPassword">Senha:</label>
               <input

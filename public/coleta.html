@@ -176,7 +176,8 @@
             </button>
           </div>
 
-          <!-- Aba: Coleta Individual -->
+          <!--BUG: Não utiliza required em nenhum dos campos-->
+          <!--BUG: Não realiza tratamento de entradas (valores maximos e minimos, por exemplo)-->
           <div id="individual" class="tab-content active">
             <div class="form-section">
               <h2>Dados do Beneficiário</h2>
@@ -184,7 +185,7 @@
                 <div class="form-grid">
                   <div class="form-group">
                     <label for="beneficiarioId">ID do Beneficiário:</label>
-                    <!-- BUG 43: Campo aceita qualquer valor sem validação numérica -->
+    
                     <input
                       type="text"
                       id="beneficiarioId"
@@ -194,7 +195,7 @@
                   </div>
                   <div class="form-group">
                     <label for="beneficiarioNome">Nome Completo:</label>
-                    <!-- BUG 44: Não valida comprimento mínimo/máximo -->
+                    
                     <input
                       type="text"
                       id="beneficiarioNome"
@@ -212,7 +213,7 @@
                 <div class="indicator-list">
                   <div class="indicator-item">
                     <label for="indicador1">Taxa de Conclusão (%):</label>
-                    <!-- BUG 45: Aceita valores negativos -->
+                   
                     <input
                       type="number"
                       id="indicador1"
@@ -222,7 +223,7 @@
                   </div>
                   <div class="indicator-item">
                     <label for="indicador2">Frequência de Presença (%):</label>
-                    <!-- BUG 46: Aceita valores acima de 100 -->
+                    
                     <input
                       type="number"
                       id="indicador2"
@@ -232,7 +233,7 @@
                   </div>
                   <div class="indicator-item">
                     <label for="indicador3">Nota de Avaliação (0-10):</label>
-                    <!-- BUG 47: Não limita máximo a 10 -->
+                    
                     <input
                       type="number"
                       id="indicador3"
@@ -254,7 +255,7 @@
 
                 <div class="form-group form-grid-full" style="margin-top: 20px">
                   <label for="observacoes">Observações:</label>
-                  <!-- BUG 48: Sem limite de caracteres (XSS potencial) -->
+                  
                   <textarea
                     id="observacoes"
                     name="observacoes"
@@ -265,7 +266,7 @@
 
                 <div class="form-group form-grid-full">
                   <label for="status">Status da Avaliação:</label>
-                  <!-- BUG 49: Sem validação padrão -->
+                 
                   <select id="status" name="status" data-testid="coleta-status">
                     <option value="">Selecione um status...</option>
                     <option value="em_progresso">Em Progresso</option>
@@ -322,7 +323,7 @@
               <form id="loteForm" onsubmit="submitLote(event)">
                 <div class="form-group">
                   <label for="arquivoCSV">Arquivo CSV/Excel:</label>
-                  <!-- BUG 50: Não valida tipo de arquivo realmente -->
+                  
                   <input
                     type="file"
                     id="arquivoCSV"
@@ -338,7 +339,7 @@
 
                 <div class="form-group">
                   <label for="validarDuplicatas">
-                    <!-- BUG 51: Validação de duplicatas não funciona realmente -->
+                    
                     <input
                       type="checkbox"
                       id="validarDuplicatas"
@@ -381,7 +382,7 @@
               </button>
             </div>
 
-            <!-- BUG 52: Histórico visível para todos os usuários, não apenas seus dados -->
+            
             <div
               id="historicoData"
               class="users-list"

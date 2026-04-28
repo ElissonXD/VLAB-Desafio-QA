@@ -31,6 +31,7 @@ async function login(event) {
   const password = document.getElementById("loginPassword").value;
   const messageDiv = document.getElementById("loginMessage");
 
+  // BUG: Sem uso do trim
   if (username.length === 0 || password.length === 0) {
     showMessage(messageDiv, "Por favor, preencha todos os campos", "error");
     return;
@@ -76,6 +77,7 @@ async function register(event) {
   ).value;
   const messageDiv = document.getElementById("registerMessage");
 
+
   if (password != passwordConfirm) {
     showMessage(messageDiv, "As senhas não coincidem", "error");
     return;
@@ -91,6 +93,7 @@ async function register(event) {
     });
 
     const data = await response.json();
+
 
     if (data.success) {
       showMessage(messageDiv, data.message, "success");
@@ -114,6 +117,7 @@ async function resetPassword(event) {
   const username = document.getElementById("resetUsername").value;
   const newPassword = document.getElementById("resetNewPassword").value;
   const messageDiv = document.getElementById("resetMessage");
+
 
   try {
     const response = await fetch("/reset-password", {
