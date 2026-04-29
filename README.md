@@ -67,10 +67,14 @@ O projeto pode ser executado localmente via Node.js ou através de containers is
 ### Opção 1: Rodando via Node.js e NPM
 
 1. Instale as dependências:
-   `npm install`
-2. Inicie a aplicação base na porta 3000:
-   `npm start`
-3. Com o servidor rodando, escolha como executar os testes:
+   ````bash
+   npm install
+   ```
+3. Inicie a aplicação, ele estára disponível na porta 3000:
+   ```bash
+   npm start
+   ```
+4. Com o servidor rodando, escolha como executar os testes:
    - **Para rodar todos os testes em background:**
 
      ```bash
