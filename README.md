@@ -100,7 +100,7 @@ O arquivo `docker-compose.yml` está configurado para subir a aplicação e o am
 
 ---
 
-## 📌 Limitações e Melhorias Futuras
+## Limitações e Melhorias Futuras
 
 Devido ao escopo e tempo de entrega, alguns pontos foram priorizados na arquitetura de testes, deixando margem para as seguintes melhorias:
 - Os testes automatizados E2E para o fluxo de **Registro** foram mapeados na documentação, mas não foram implementados em código nesta versão.
