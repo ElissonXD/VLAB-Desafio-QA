@@ -79,7 +79,7 @@ O projeto pode ser executado localmente via Node.js ou através de containers is
    - **Para rodar um módulo específico:**
 
      ```bash
-     npx cypress run --spec 'cypress/e2e/coleta.cy.js
+     npx cypress run --spec 'cypress/e2e/coleta.cy.js'
      ```
    - **Para abrir a interface visual do Cypress:**
 
@@ -87,7 +87,7 @@ O projeto pode ser executado localmente via Node.js ou através de containers is
      npx cypress open
      ```
 
-### Opção 2: Rodando via Docker (Recomendado)
+### Opção 2: Rodando via Docker
 
 O arquivo `docker-compose.yml` está configurado para subir a aplicação e o ambiente de testes de forma orquestrada.
 
