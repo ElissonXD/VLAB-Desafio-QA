@@ -82,7 +82,17 @@ Essa aba de testes tem como finalidade testar a aba de coleta e garantir seu fun
 
 ---
 
-#### **CT-09: Consulta ao Histórico de Coletas**
+#### **CT-09: Submissão de Planilha com Tamanho Excedente**
+* **Pré-condição:** O usuário deve estar na seção de "Coleta em Lote".
+* **Passos:**
+    1. Tentar realizar o upload de um arquivo CSV que possua tamanho superior a 10MB.
+* **Resultado Esperado:** O sistema deve bloquear o upload imediatamente e exibir a mensagem: "Arquivo muito grande. Limite: 10MB.".
+* **Critério de Sucesso:** O servidor não deve processar arquivos que coloquem em risco a estabilidade do sistema por tamanho excessivo.
+
+
+---
+
+#### **CT-10: Consulta ao Histórico de Coletas**
 * **Pré-condição:** O usuário deve ter realizado pelo menos uma coleta previamente.
 * **Passos:**
     1. Acessar a aba ou seção de **"Histórico"**.
@@ -91,17 +101,10 @@ Essa aba de testes tem como finalidade testar a aba de coleta e garantir seu fun
 
 ---
 
-#### **CT-10: Logout do Sistema**
+#### **CT-11: Logout do Sistema**
 * **Pré-condição:** O usuário deve estar logado no sistema.
 * **Passos:**
     1. Clicar no botão "Sair".
 * **Resultado Esperado:** O sistema deve deslogar o usuário e redirecionar para a página de login.
 
 ---
-
-#### **CT-11: Submissão de Planilha com Tamanho Excedente**
-* **Pré-condição:** O usuário deve estar na seção de "Coleta em Lote".
-* **Passos:**
-    1. Tentar realizar o upload de um arquivo CSV que possua tamanho superior a 10MB.
-* **Resultado Esperado:** O sistema deve bloquear o upload imediatamente e exibir a mensagem: "Arquivo muito grande. Limite: 10MB.".
-* **Critério de Sucesso:** O servidor não deve processar arquivos que coloquem em risco a estabilidade do sistema por tamanho excessivo.

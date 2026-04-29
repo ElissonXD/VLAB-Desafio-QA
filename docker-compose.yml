@@ -3,16 +3,22 @@ services:
     build: .
     ports:
       - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   cypress:
     image: cypress/included:13.6.0
     depends_on:
-      - web-app
+      web-app:
+        condition: service_healthy
     environment:
       - CYPRESS_BASE_URL=http://web-app:3000
     volumes:
-      - ./:/opt/app     
+      - ./:/opt/app
       - ./cypress/videos:/opt/app/cypress/videos
       - ./cypress/screenshots:/opt/app/cypress/screenshots
     working_dir: /opt/app
-    entrypoint: cypress run
+    entrypoint: ["npx", "cypress", "run"]

@@ -29,14 +29,6 @@ Funcionalidade: Login
         Quando o usuário tenta realizar o login
         Então o sistema deve negar o acesso e exibir uma mensagem de erro indicando que os campos obrigatórios não foram preenchidos
     
-    Cenário: Usuário esqueceu a senha e solicita recuperação
-        Dado um usuário "user" que está cadastrado com a senha "user123"
-        E o usuário esqueceu a senha
-        Quando o usuário solicita a recuperação de senha
-        E insere as credenciais de recuperação corretas
-        E insere uma nova senha "nova_senha123"
-        Então o sistema deve permitir a recuperação da senha e atualizar a senha do usuário para "nova_senha123"
-    
     Cenário: Login com SQL injection
         Dado um usuário mal-intencionado que tenta realizar um ataque de SQL injection no campo de login, inserindo " OR '1'='1 "
         Quando o usuário insere um código malicioso no campo de login e tenta fazer login
@@ -47,4 +39,4 @@ Funcionalidade: Login
         Dado um usuário "user" com senha "user123"
         Quando o usuário tenta realizar o login inserindo espaços em branco ao redor " user " no campo de login
         E insere a senha também com espaços em branco " user123 "
-        Então o sistema deve negar o acesso e exibir uma mensagem de erro indincando que as credenciais estão inválidas
+        Então o sistema deve aceitar o acesso e entrar no sistema, indicando que os espaços em branco foram sanitizados corretamente

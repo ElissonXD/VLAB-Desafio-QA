@@ -35,7 +35,7 @@ Pode ser encontrado no começo do arquivo do servidor
 
 ### Evidências
 
-![alt text](image.png)
+![alt text](./Prints%20de%20evidências/image.png)
 
 ### Impacto
 
@@ -72,7 +72,7 @@ Pode ser encontrado no arquivo de usuários do sistema
 
 ### Evidências
 
-![alt text](users.png)
+![alt text](./Prints%20de%20evidências/users.png)
 
 ### Impacto
 
@@ -107,7 +107,7 @@ evitando ataques
 
 ### Evidências
 
-![alt text](logindados.png)
+![alt text](./Prints%20de%20evidências/logindados.png)
 
 ### Impacto
 
@@ -144,7 +144,7 @@ Pode ser encontrado no arquivo de usuários do sistema
 
 ### Evidências
 
-![alt text](users.png)
+![alt text](./Prints%20de%20evidências/users.png)
 
 ### Impacto
 
@@ -176,7 +176,7 @@ O código utiliza Math.random() para conceder acesso se o valor for menor que 0.
 
 ## Evidências
 
-![alt text](random.png)
+![alt text](./Prints%20de%20evidências/random.png)
 
 ## Impacto
 Permite bypass de autenticação por força bruta em pouquíssimas tentativas.
@@ -210,7 +210,7 @@ Ao realizar um login bem-sucedido, o servidor retorna o objeto completo do usuá
 
 ### Evidências
 
-![alt text](logindados.png)
+![alt text](./Prints%20de%20evidências/logindados.png)
 
 ### Impacto
 
@@ -244,7 +244,7 @@ O bloqueio contra tentativas múltiplas de login só ocorre após um número abs
 
 ### Evidências
 
-![alt text](1000tentativas.png)
+![alt text](./Prints%20de%20evidências/1000tentativas.png)
 
 ### Impacto
 
@@ -279,7 +279,7 @@ A validação de e-mail é extremamente superficial e a comparação de usuário
 
 ### Evidências
 
-![alt text](registrofraco.png)
+![alt text](./Prints%20de%20evidências/registrofraco.png)
 
 ### Impacto
 
@@ -313,9 +313,9 @@ O sistema gera novos IDs baseando-se no tamanho atual do array ou em um contador
 
 ### Evidências
 
-![alt text](iduser.png)
+![alt text](./Prints%20de%20evidências/iduser.png)
 
-![alt text](idcoleta.png)
+![alt text](./Prints%20de%20evidências/idcoleta.png)
 
 ### Impacto
 
@@ -349,7 +349,7 @@ A rota do dashboard permite acesso baseado apenas em um parâmetro de query stri
 
 ### Evidências
 
-![alt text](adminquery.png)
+![alt text](./Prints%20de%20evidências/adminquery.png)
 
 ### Impacto
 
@@ -384,7 +384,7 @@ A função de logout não destrói a sessão no servidor.
 
 ### Evidências
 
-![alt text](sessao.png)
+![alt text](./Prints%20de%20evidências/sessao.png)
 
 ### Impacto
 
@@ -418,7 +418,7 @@ A rota `/api/user` permite buscar qualquer usuário passando o ID na URL, retorn
 
 ### Evidências
 
-![alt text](exposiçãouser.png)
+![alt text](./Prints%20de%20evidências/exposiçãouser.png)
 
 ### Impacto
 
@@ -452,7 +452,7 @@ Existe um endpoint que revela toda a base de usuários.
 
 ### Evidências
 
-![alt text](basedados.png)
+![alt text](./Prints%20de%20evidências/basedados.png)
 
 ### Impacto
 
@@ -488,7 +488,7 @@ A rota de reset de senha não exige autenticação e revela se um usuário exist
 
 ### Evidências
 
-![alt text](reset.png)
+![alt text](./Prints%20de%20evidências/reset.png)
 
 ### Impacto
 
@@ -522,7 +522,7 @@ O endpoint `/api/coleta` aceita dados inválidos ou fora de limites para os indi
 
 ### Evidências
 
-![alt text](coleta.png)
+![alt text](./Prints%20de%20evidências/idcoleta.png)
 
 ### Impacto
 
@@ -556,7 +556,7 @@ O histórico retorna coletas de todos os usuários do sistema, ao invés de filt
 
 ### Evidências
 
-![alt text](todascoletas.png)
+![alt text](./Prints%20de%20evidências/todascoletas.png)
 
 ### Impacto
 
@@ -591,7 +591,7 @@ Violação de privacidade dos dados registrados.
 
 ### Evidências
 
-![alt text](planilha.png)
+![alt text](./Prints%20de%20evidências/planilha.png)
 
 ### Impacto
 
@@ -599,7 +599,7 @@ Perda de dados enviados pelo cliente.
 
 ---
 
-## Bug #17: Falso Positivo no Health Check (Falta de Integrity Check)
+## Bug #17: Falta de Integrity Check
 
 **Severidade**: Baixa
 
@@ -626,8 +626,8 @@ A rota `/health` não realiza nenhuma verificação de integridade do sistema. E
 
 ### Evidências
 
-![alt text](integridade.png)
+![alt text](./Prints%20de%20evidências/integridade.png)
 
 ### Impacto
 
-Ferramentas de monitoramento e balanceadores de carga (Load Balancers) podem rotear tráfego para uma instância que está com o banco de dados quebrado, pois o health check falsamente afirma que a aplicação está saudável.
+Ferramentas de monitoramento e balanceadores de carga podem rotear tráfego para uma instância que está com o banco de dados quebrado, pois o health check falsamente afirma que a aplicação está saudável.

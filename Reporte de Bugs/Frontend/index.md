@@ -31,7 +31,7 @@ Os formulários de login, registro e recuperação de senha permitem a submissã
 ### Evidências
 
 Arquivo index.html
-![alt text](Prints de evidências/required.png)
+![alt text](../Prints%20de%20evidências/required.png)
 
 ### Impacto
 
@@ -68,7 +68,7 @@ No formulário de registro, o campo destinado ao endereço de e-mail está confi
 ### Evidências
 
 Arquivo index.html
-![alt text](Prints de evidências/email.png)
+![alt text](../Prints%20de%20evidências/email.png)
 
 ### Impacto
 
@@ -104,7 +104,7 @@ O sistema não utiliza o método `.trim()` para remover espaços em branco no in
 ### Evidências
 
 Arquivo script.js
-![alt text](Prints de evidências/trim.png)
+![alt text](../Prints%20de%20evidências/trim.png)
 
 ### Impacto
 
@@ -141,7 +141,7 @@ Após o login ou registro bem-sucedido, o script armazena o objeto de usuário r
 ### Evidências
 
 Arquivo script.js
-![alt text](Prints de evidências/local.png)
+![alt text](../Prints%20de%20evidências/local.png)
 
 ### Impacto
 
@@ -179,7 +179,7 @@ Qualquer script malicioso injetado na página pode facilmente ler o `localStorag
 ### Evidências
 
 Arquivo script.js
-![alt text](registro.png)
+![alt text](../Prints%20de%20evidências/registro.png)
 
 ### Impacto
 
@@ -217,7 +217,7 @@ O formulário de redefinição de senha não aplicam regras de complexidade (tam
 ### Evidências
 
 Arquivo script.js
-![alt text](Prints de evidências/novasenha.png)
+![alt text](../Prints%20de%20evidências/novasenha.png)
 
 ### Impacto
 

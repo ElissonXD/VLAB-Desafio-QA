@@ -17,12 +17,16 @@ describe('Testes de coleta', () => {
 
   //ABA INDIVIDUAL
 
+  //TESTES POSITIVOS
+
   it('CT-01: Deve realizar uma coleta com sucesso', () => {
 
       coletaPage.fillLabels(coletaData).clickSubmitColeta();
     
       coletaPage.getColetaMessage().invoke('text').should('match', /Coleta submetida com sucesso/i);
     })
+
+  //TESTES NEGATIVOS
 
   it("CT-02: Deve mostrar erro ao tentar submeter coleta sem ID ou Nome", () => {
     const invalidData = {...coletaData, id: "", nome: ""}
@@ -57,6 +61,8 @@ describe('Testes de coleta', () => {
 
   // ABA DE LOTE
 
+  //TESTES POSITIVOS
+
   it("CT-06: Deve realizar upload de arquivo de lote com sucesso", () => {
     const filepath = 'cypress/fixtures/lote_test.csv'
     coletaPage.clickTabLote()
@@ -64,6 +70,8 @@ describe('Testes de coleta', () => {
 
     coletaPage.getLoteMessage().invoke('text').should('match', /3 registros inseridos com sucesso!/i);
   })
+
+  //TESTES NEGATIVOS
 
   it("CT-07: Deve mostrar erro ao tentar realizar upload de arquivo de lote sem selecionar um arquivo", () => {
     coletaPage.clickTabLote()
@@ -80,9 +88,18 @@ describe('Testes de coleta', () => {
     coletaPage.getLoteMessage().invoke('text').should('match', /2 registros inseridos com sucesso!/i);
   })
 
+  it("CT-09 (FRONTEND-COLETA: BUG #4): Deve mostrar erro ao tentar realizar upload de arquivo de lote com mais de 10MB", () => {
+    const filepath = 'cypress/fixtures/dummy.csv'
+    coletaPage.clickTabLote()
+    coletaPage.uploadArquivoLote(filepath).clickSubmitLote()
+    coletaPage.getLoteMessage().invoke('text').should('match', /Arquivo muito grande/i);
+  })
+
   // ABA DE HISTÓRICO
 
-  it("CT-09: Deve carregar o histórico de coletas corretamente", () => {
+  // TESTES POSITIVOS
+
+  it("CT-10: Deve carregar o histórico de coletas corretamente", () => {
     coletaPage.clickTabHistorico()
     coletaPage.clickCarregarHistorico()
 
@@ -91,7 +108,9 @@ describe('Testes de coleta', () => {
 
   // ABA DE LOGOUT
 
-  it("CT-10: Deve realizar logout corretamente", () => {
+  // TESTES POSITIVOS
+
+  it("CT-11: Deve realizar logout corretamente", () => {
     coletaPage.clickLogout()
     cy.url().should('include', '/')
   })
